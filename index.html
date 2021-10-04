@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        Numero 1: <input type="text" name="num1" id="num1"><br>
+        Numero 2: <input type="text" name="num2" id="num2">
+        <br><br>
+        <input type="submit" value="calcular operaciones" onClick="calcular()">
+    <script>
+        function calcular(){
+            const x = +document.getElementById('num1').value;
+            const y = +document.getElementById('num2').value;
+
+            let sumaXY = suma(x, y);
+            let restaXY = resta(x, y);
+            let multiplicacionXY = multiplicacion(x, y);
+            let divisionXY = division(x, y, 0);
+
+            alert("Suma: " + sumaXY + "\nResta: " + restaXY + "\nMultiplicación: " + multiplicacionXY + "\nDivisión: " + divisionXY); 
+        }
+
+        function suma(x, y){
+            return x + y;
+        }
+
+        function resta(x, y){
+            return x - y;
+        }   
+
+        function multiplicacion(x, y){
+            if(y === 1){
+                return x;
+            }else{
+                return suma(x, multiplicacion(x, resta(y, 1)));
+            }
+        }
+
+        function division(x, y, cociente){
+            if(x < 0){
+                return resta(cociente, 1);
+            }else{
+                return division(resta(x, y), y, suma(cociente,1));
+            }
+        }
+        
+    </script>
+</body>
+</html>
+
